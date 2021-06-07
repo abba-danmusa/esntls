@@ -26,6 +26,7 @@ mongoose.connection.once('open', () => {
 
 require('./models/store')
 require('./models/user')
+require('./models/review')
 
 // Start our app!
 const app = require('./app');

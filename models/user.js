@@ -4,7 +4,7 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const mongodbErrorHandler = require('mongoose-mongodb-errors')
 const Schema = mongoose.Schema
 
-const userShema = new Schema({
+const userSchema = new Schema({
     email: {
         type: String,
         trim: true,
@@ -19,10 +19,14 @@ const userShema = new Schema({
         trim: true
     },
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    hearts: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Store'
+    }]
 })
 
-userShema.plugin(passportLocalMongoose, { usernameField: 'email' })
-userShema.plugin(mongodbErrorHandler)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
+userSchema.plugin(mongodbErrorHandler)
 
-module.exports = mongoose.model('User', userShema)
+module.exports = mongoose.model('User', userSchema)

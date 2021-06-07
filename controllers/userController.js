@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const promisify = require('es6-promisify')
+const Store = mongoose.model('Store')
 const User = mongoose.model('User')
 
 
