@@ -40,7 +40,8 @@ exports.forgot = async(req, res, next) => {
     user.resetPasswordToken = crypto.randomBytes(25).toString('hex')
     user.resetPasswordExpires = Date.now() + 1200000
     await user.save()
-        // 3. send the tokens to their email address
+
+    // 3. send the tokens to their email address
     const resetUrl = `http://${req.headers.host}/account/passwordreset/${user.resetPasswordToken}`
     await mail.send({
             user,
